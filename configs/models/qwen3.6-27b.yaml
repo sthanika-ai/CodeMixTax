@@ -1,0 +1,21 @@
+hf_id: Qwen/Qwen3.6-27B
+display_name: Qwen3.6 27B
+params_b: 27
+architecture: dense
+vision: false
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  Reasoning-capable. Thinking is disabled via chat_template_kwargs so the model
+  answers directly: on 21k rows a hidden chain of thought multiplies cost and, on
+  the short-answer tasks, mostly gets truncated. To measure the thinking mode
+  instead, drop enable_thinking and raise max_tokens well above 2048 -- and report
+  the two configurations separately, never mixed.
+dtype: bfloat16
+max_model_len: 16384
+reasoning: true
+chat_template_kwargs:
+  enable_thinking: false
+task_overrides:
+  gsm8k: { max_tokens: 2048 }

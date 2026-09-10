@@ -1,0 +1,14 @@
+hf_id: google/gemma-3-4b-it
+display_name: Gemma 3 4B (it)
+params_b: 4
+architecture: dense
+vision: true
+license: gemma-terms-of-use
+gated: true
+status: verified
+notes: >-
+  Smallest Gemma 3. Text-only prompts are used throughout -- CodeMixBench has no
+  image inputs, so the vision tower is unused. Gated: accept the Gemma terms on
+  the model page and export HF_TOKEN before downloading.
+dtype: bfloat16
+max_model_len: 8192

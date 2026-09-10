@@ -1,0 +1,62 @@
+# Baseline settings inherited by every model card and every run.
+# Precedence: this file < configs/models/<m>.yaml < configs/suites/<s>.yaml < CLI flags.
+
+model:
+  backend: openai            # openai | vllm | hf | echo
+  prompt_style: chat         # chat for instruction-tuned; completion for base models
+
+  # Greedy decoding. Benchmarks should be reproducible, and every task here has a
+  # single correct answer, so there is nothing to gain from sampling.
+  temperature: 0.0
+  top_p: 1.0
+  seed: 1234
+
+  max_tokens: 512
+  concurrency: 16            # in-flight HTTP requests (openai backend)
+  request_timeout: 600.0
+  max_retries: 5
+
+  # Per-task token budgets. These matter more than they look:
+  #   - LID/POS/NER must emit one JSON object per input token, so a 40-token
+  #     sentence needs well over 512 tokens and will silently truncate without this.
+  #   - GSM8K is chain-of-thought by construction.
+  #   - MMLU/TruthfulQA need a single letter; a tight cap stops chatty models from
+  #     rambling past the answer and cuts sweep time substantially.
+  #   - MT needs roughly the input length.
+  # Only sampling fields are allowed here -- load-time fields (dtype, quantization,
+  # tensor_parallel_size, ...) would require reloading the model per task.
+  task_overrides:
+    lid:   { max_tokens: 1536 }
+    pos:   { max_tokens: 1536 }
+    ner:   { max_tokens: 1536 }
+    # 256, not 64: larger models answer "neutral\n\n**Reasoning:** ..." rather than a
+    # bare label, and a 64-token cap truncated 55% of Gemma-3-27B's Malayalam replies.
+    # Truncation correlates with hard rows (the model explains itself when unsure), so a
+    # tight budget silently biases the score downward on exactly the ambiguous cases.
+    sa:    { max_tokens: 256 }
+    mt:    { max_tokens: 320 }
+    mmlu:  { max_tokens: 48 }
+    truthfulqa: { max_tokens: 48 }
+    # 4096, up from 1024: chain-of-thought on romanized Hindi overran the old cap for
+    # 24.5% of rows on the 4B (vs 5.4% on the 12B), which made a size comparison on
+    # that condition meaningless. Completed replies average ~400 tokens, so the extra
+    # headroom is only reserved, not spent -- vLLM stops at EOS.
+    #
+    # REQUIRES --max-model-len >= 4431. The longest GSM8K prompt is 335 tokens (the
+    # romanized conditions tokenize worst: more subword splits than Devanagari), so
+    # 335 + 4096 exceeds a 4096-token window. Use 8192.
+    gsm8k: { max_tokens: 4096 }
+
+run:
+  datasets: [all]            # all 18 Indic splits
+  shots: 0                   # zero-shot; MMLU/GSM8K/TruthfulQA also accept 1/5
+  limit: null                # null = full split
+  sample: head               # use `random` for an honest partial evaluation
+  seed: 1234
+  extraction: robust         # robust (recommended) | paper (upstream bug-for-bug)
+  prompt_file: prompt.json   # upstream templates, unmodified
+  data_dir: data/raw
+  out_dir: runs
+  resume: true
+  save_generations: true
+  fail_fast: false

@@ -1,0 +1,26 @@
+hf_id: openai/gpt-oss-20b
+display_name: gpt-oss 20B
+params_b: 21
+architecture: moe (~3.6B active)
+vision: false
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  Ships in MXFP4 for the expert weights, so it fits in far less memory than 21B
+  parameters suggests. Uses the harmony response format with analysis/final
+  channels; the extractor reads only the final channel, so reasoning text cannot
+  leak into an answer. Set reasoning effort on the server side (vLLM exposes it as
+  a chat-template kwarg) and record which level you used -- it moves GSM8K a lot.
+dtype: auto
+max_model_len: 16384
+reasoning: true
+
+# 2048, not 512: the analysis channel alone runs 200-370 tokens before the model
+# reaches an answer, and 512 truncated 35% of MMLU rows mid-thought. A truncated
+# reasoning trace now scores as unparsed rather than yielding a letter scraped from
+# the model's thinking, so a tight budget would show up as a collapsed score.
+task_overrides:
+  mmlu: { max_tokens: 2048 }
+  truthfulqa: { max_tokens: 2048 }
+  gsm8k: { max_tokens: 4096 }

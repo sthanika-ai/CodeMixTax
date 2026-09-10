@@ -1,0 +1,26 @@
+hf_id: bharatgenai/Param-1-7B
+display_name: Param-1 7B (MoE)
+params_b: 7
+architecture: moe (40 layers, hidden 1536, vocab 128k)
+vision: false
+license: other
+gated: false
+status: verified
+notes: >-
+  BharatGen's MoE variant, a different architecture from Param-1-2.9B: it declares
+  Param1MoEForCausalLM with its own modeling_param1MoE.py, so the two models do not
+  even share remote code. Same reasoning as the 2.9B for using the `hf` backend --
+  neither architecture is registered in vLLM 0.10.1.
+
+  Context is 4096, half the 2.9B's. That is the binding constraint here: a 4096-token
+  GSM8K budget leaves no room for the prompt, so GSM8K runs at 3072 and the longest
+  prompts still fit. Worth watching the truncation column on GSM8K for this model
+  specifically.
+backend: hf
+trust_remote_code: true
+dtype: bfloat16
+max_model_len: 4096
+task_overrides:
+  mmlu: { max_tokens: 512 }
+  truthfulqa: { max_tokens: 512 }
+  gsm8k: { max_tokens: 3072 }

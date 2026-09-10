@@ -1,0 +1,17 @@
+hf_id: RedHatAI/gemma-3-12b-it-quantized.w4a16
+display_name: Gemma 3 12B (it, INT4 W4A16)
+params_b: 12
+architecture: dense
+vision: true
+license: gemma-terms-of-use
+gated: false
+status: verified
+notes: >-
+  INT4 weight-only (W4A16) quantisation of google/gemma-3-12b-it, loadable directly
+  by vLLM via compressed-tensors. This is the INT4 variant for the 12B comparison.
+  Alternative: google/gemma-3-12b-it-qat-q4_0-unquantized holds Google's own QAT
+  weights but is distributed unquantized, so it gives no memory saving as-is --
+  use its GGUF sibling with llama.cpp if you want the official QAT numbers.
+quantization: compressed-tensors
+dtype: auto
+max_model_len: 8192

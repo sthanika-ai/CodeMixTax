@@ -1,0 +1,33 @@
+# gpt-oss 20B served by the local Ollama daemon.
+hf_id: openai/gpt-oss-20b
+served_model_name: gpt-oss:20b
+display_name: gpt-oss 20B (Ollama, MXFP4)
+backend: openai
+base_url: http://localhost:11434/v1
+
+params_b: 21
+architecture: moe (~3.6B active)
+license: apache-2.0
+status: verified
+quantization: mxfp4
+reasoning: true
+notes: >-
+  Already pulled (~14 GB). Uses the harmony format with analysis/final channels;
+  the extractor reads only the final channel, so reasoning text cannot leak into an
+  answer. Ollama may surface the analysis channel differently from vLLM -- spot-check
+  a few rows of predictions.csv (the `raw` and `raw_stripped` columns) on the first
+  small run to confirm stripping is behaving.
+
+  Reasoning effort is not exposed through Ollama's OpenAI shim here, so record that
+  it ran at the server default rather than claiming a specific level.
+concurrency: 4
+request_timeout: 1800.0
+task_overrides:
+  sa:         { max_tokens: 1024 }
+  mmlu:       { max_tokens: 1024 }
+  truthfulqa: { max_tokens: 1024 }
+  mt:         { max_tokens: 1024 }
+  gsm8k:      { max_tokens: 4096 }
+  lid:        { max_tokens: 3072 }
+  pos:        { max_tokens: 3072 }
+  ner:        { max_tokens: 3072 }

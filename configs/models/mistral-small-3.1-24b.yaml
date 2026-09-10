@@ -1,0 +1,19 @@
+hf_id: mistralai/Mistral-Small-3.1-24B-Instruct-2503
+display_name: Mistral Small 3.1 24B (Instruct)
+params_b: 24
+architecture: dense
+vision: true
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  The control for sarvam-m-24b: same parameter count and the same base family,
+  without the Indic tuning. Report these two side by side to isolate what Indic
+  post-training buys on code-mixed input.
+dtype: bfloat16
+max_model_len: 16384
+
+task_overrides:
+  mmlu: { max_tokens: 512 }
+  truthfulqa: { max_tokens: 512 }
+  gsm8k: { max_tokens: 4096 }

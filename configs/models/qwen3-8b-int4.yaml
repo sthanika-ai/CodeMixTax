@@ -1,0 +1,19 @@
+hf_id: Qwen/Qwen3-8B-AWQ
+display_name: Qwen3 8B (AWQ INT4)
+params_b: 8
+architecture: dense
+vision: false
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  Qwen's own AWQ INT4 release, so the quantisation is first-party -- the cleanest
+  INT4-vs-bf16 comparison available in the 8B class here. Compare against qwen3-8b.
+quantization: awq
+dtype: auto
+max_model_len: 16384
+reasoning: true
+chat_template_kwargs:
+  enable_thinking: false
+task_overrides:
+  gsm8k: { max_tokens: 2048 }

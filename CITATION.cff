@@ -1,0 +1,46 @@
+cff-version: 1.2.0
+message: >-
+  If you use this evaluation pipeline or the results it produces, please cite
+  both this repository and the upstream CodeMixBench paper.
+title: "CodeMixTax: reproducible local-LLM evaluation on the CodeMixBench Indic subset"
+abstract: >-
+  A reproducible, resumable evaluation harness that scores open-weight / local
+  LLMs on the 18 CodeMixBench splits covering five Indian languages (Hindi,
+  Bengali, Marathi, Tamil, Malayalam) across eight tasks (LID, POS, NER, SA, MT,
+  MMLU, GSM8K, TruthfulQA). Metric implementations are ports of the upstream
+  CodeMixBench reference code; inference is served locally via vLLM, an
+  OpenAI-compatible endpoint, or Hugging Face transformers.
+type: software
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/sthanika-ai/CodeMixTax"
+keywords:
+  - code-mixing
+  - code-switching
+  - llm-evaluation
+  - indic-nlp
+  - benchmark
+authors:
+  - name: "sthanika-ai"
+
+references:
+  - type: conference-paper
+    title: "CodeMixBench: Evaluating Code-Mixing Capabilities of LLMs Across 18 Languages"
+    year: 2025
+    authors:
+      - given-names: Yilun
+        family-names: Yang
+      - given-names: Yekun
+        family-names: Chai
+    collection-title: "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing"
+    publisher:
+      name: "Association for Computational Linguistics"
+    doi: "10.18653/v1/2025.emnlp-main.109"
+    url: "https://aclanthology.org/2025.emnlp-main.109/"
+    start: 2139
+    end: 2169
+    isbn: "979-8-89176-332-6"
+  - type: database
+    title: "CodeMixBench dataset"
+    url: "https://huggingface.co/datasets/CodeMixBench/CodeMixBench"
+    license: Apache-2.0

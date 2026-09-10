@@ -1,0 +1,15 @@
+hf_id: google/gemma-3-27b-it
+display_name: Gemma 3 27B (it)
+params_b: 27
+architecture: dense
+vision: true
+license: gemma-terms-of-use
+gated: true
+status: verified
+notes: >-
+  Needs roughly 57 GB for bf16 weights -- an 80 GB card, or two 40 GB cards with
+  tensor_parallel_size 2. On smaller hardware use an AWQ/GPTQ community quant and
+  say so in the report; quantised and bf16 numbers are not interchangeable.
+dtype: bfloat16
+max_model_len: 8192
+tensor_parallel_size: 1

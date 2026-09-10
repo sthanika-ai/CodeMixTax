@@ -1,0 +1,49 @@
+hf_id: RedHatAI/Llama-4-Scout-17B-16E-Instruct-quantized.w4a16
+display_name: Llama 4 Scout 17Bx16E (w4a16)
+params_b: 109
+architecture: moe (17B active of 109B, 16 experts, 1 per token)
+vision: true
+license: llama4-community
+gated: false
+status: verified
+notes: >-
+  Serving settings below come from the team's standard model card (checkpoint,
+  pinned revision, w4a16, max_num_seqs 8, gpu_memory_utilization 0.85).
+
+  Two settings from that card are deliberately NOT applied here, because they would
+  make this model incomparable to the other ten in the study:
+
+    protocol: loglikelihood -- this pipeline is generative only. Loglikelihood ranks
+      each option by logprob and yields systematically different (usually higher)
+      numbers, because it removes the formatting failure mode entirely. All other
+      models were scored generatively.
+    num_fewshot: 5 -- the study is zero-shot throughout. A 5-shot row in a 0-shot
+      table would look stronger for a reason unrelated to language form.
+
+  The w4a16 build also sidesteps the gating on meta-llama/Llama-4-Scout: that repo
+  returns 403 with our token, and bf16 weights would need ~220 GB anyway. This one
+  is 64.9 GB and fits a single 80 GB card.
+
+  max_model_len 5120 is the card's value and is enough for the main pass (the longest
+  0-shot GSM8K prompt is ~335 tokens, plus a 4096-token budget). The truncated-row
+  regeneration pass needs a wider window and passes --max-model-len explicitly.
+hf_revision: e8b8a7ca92e62e476ae2e7d3169bf11c7caba485
+dtype: bfloat16
+quantization: compressed-tensors
+tensor_parallel_size: 1
+max_model_len: 5120
+max_num_seqs: 8
+gpu_memory_utilization: 0.85
+
+# Llama 4 Scout is bimodal on multiple choice: most rows answer "(B)" in ~4 tokens,
+# but on harder items it switches into "## Step 1: ..." reasoning. At the global
+# 48-token MMLU default that cut off 94 of 1,024 rows mid-derivation, and 100% of the
+# resulting unparsed rows were truncated ones -- the budget was destroying real
+# answers rather than measuring a weakness. Unlike Llama 3.1, which restates the
+# chosen option FIRST and so survives truncation, this model reasons first.
+reasoning: true
+task_overrides:
+  mmlu: { max_tokens: 2048 }
+  truthfulqa: { max_tokens: 2048 }
+  gsm8k: { max_tokens: 4096 }
+

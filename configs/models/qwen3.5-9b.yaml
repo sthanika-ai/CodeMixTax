@@ -1,0 +1,21 @@
+hf_id: Qwen/Qwen3.5-9B
+display_name: Qwen3.5 9B
+params_b: 9
+architecture: dense
+vision: false
+license: apache-2.0
+gated: false
+status: substituted
+notes: >-
+  SUBSTITUTION. You asked for "Qwen3.6 8B", which does not exist: the Qwen3.6 line
+  ships only 27B (dense) and 35B-A3B (MoE). This 9B is the nearest same-generation
+  8B-class dense model. If you would rather stay in the 3.6 family, evaluate
+  qwen3.6-27b and note the size gap; if you want a true 8B, use qwen3-8b.
+  Whichever you pick, name the actual checkpoint in the report -- not "Qwen3.6 8B".
+dtype: bfloat16
+max_model_len: 16384
+reasoning: true
+chat_template_kwargs:
+  enable_thinking: false
+task_overrides:
+  gsm8k: { max_tokens: 2048 }

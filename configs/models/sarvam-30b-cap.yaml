@@ -1,0 +1,39 @@
+hf_id: sarvamai/sarvam-30b
+display_name: Sarvam-30B (thinking capped 4k)
+params_b: 30
+architecture: MoE, 128 experts top-6 + 1 shared (2.4B non-embedding active)
+vision: false
+license: apache-2.0
+gated: false
+status: experimental
+notes: >-
+  Budget-forced variant of sarvam-30b. The uncapped run could not be made
+  reportable: 34-54% of GSM8K rows never closed </think> at 8192, and the author's
+  own 65536 budget gave only 7x concurrency (2h22m for a single 115-row split), so
+  the ladder was abandoned.
+
+  thinking_token_budget caps tokens spent inside <think>; vLLM injects </think> at
+  the cap, forcing the model to commit to an answer rather than running to the
+  ceiling and scoring UNK. This measures "accuracy with reasoning capped at 4000
+  tokens", NOT accuracy with the reasoning the model wants -- so it is NOT directly
+  comparable to sarvam-m-24b, whose traces were unconstrained.
+
+  The cap is silently IGNORED under the V2 model runner. Sarvam resolves to V1
+  anyway (SarvamMoEForCausalLM is not a default-V2 architecture), but the driver
+  asserts VLLM_USE_V2_MODEL_RUNNER=0 and run_meta records v2_model_runner so the
+  run is auditable rather than assumed.
+trust_remote_code: true
+dtype: bfloat16
+max_model_len: 16384
+reasoning: true
+gpu_memory_utilization: 0.92
+thinking_token_budget: 4000
+reasoning_delimiters: ["<think>", "</think>"]
+# 8192 on both tasks, well clear of the 4000-token thinking cap. The cap, not this
+# ceiling, is what ends a runaway trace: vLLM injects </think> at 4000, leaving 4192
+# for the answer. The headroom means a row is only ever recorded as truncated if it
+# overruns AFTER being forced out of thinking -- which makes residual truncation a
+# real signal about the answer, not an artifact of a tight ceiling.
+task_overrides:
+  mmlu: { max_tokens: 8192 }
+  gsm8k: { max_tokens: 8192 }

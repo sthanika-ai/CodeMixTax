@@ -1,0 +1,14 @@
+hf_id: meta-llama/Llama-3.1-8B-Instruct
+display_name: Llama 3.1 8B (Instruct)
+params_b: 8
+architecture: dense
+vision: false
+license: llama3.1-community
+gated: true
+status: verified
+notes: >-
+  The standard 8B baseline, and useful here precisely because Indic languages are a
+  small share of its pretraining mix -- it anchors the low end for the Indic-tuned
+  models to be measured against. Gated: request access on the model page.
+dtype: bfloat16
+max_model_len: 16384

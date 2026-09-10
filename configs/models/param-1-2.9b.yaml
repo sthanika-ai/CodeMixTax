@@ -1,0 +1,32 @@
+hf_id: bharatgenai/Param-1-2.9B-Instruct
+display_name: Param-1 2.9B (Instruct)
+params_b: 2.9
+architecture: dense (32 layers, hidden 2048, vocab 256k)
+vision: false
+license: other
+gated: false
+status: verified
+notes: >-
+  BharatGen's Indic-first model. Runs on the `hf` backend, NOT vLLM: it declares
+  ParamBharatGenForCausalLM, which vLLM 0.10.1 does not register, and vLLM cannot
+  fall back to a repo's own modeling code the way transformers can. The repo ships
+  config_parambharatgen.py and modeling_parambharatgen.py and points at them through
+  auto_map, so transformers loads it with trust_remote_code.
+
+  Two consequences. Throughput is far lower than vLLM (no paged attention, no
+  continuous batching), so budget several times the wall clock of a similar-sized
+  Gemma. And trust_remote_code executes third-party Python from the Hub at load
+  time -- acceptable here because BharatGen is a known public initiative, but it is
+  a real difference from every other model in this study and is recorded as such.
+
+  Its 256k vocabulary is unusually large for 2.9B parameters, which is the point:
+  Indic scripts tokenise far more efficiently than they do under a Llama or Gemma
+  tokeniser.
+backend: hf
+trust_remote_code: true
+dtype: bfloat16
+max_model_len: 8192
+task_overrides:
+  mmlu: { max_tokens: 512 }
+  truthfulqa: { max_tokens: 512 }
+  gsm8k: { max_tokens: 4096 }

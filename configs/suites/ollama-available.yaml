@@ -1,0 +1,28 @@
+# The three models from the target list that are ALREADY pulled in the local
+# Ollama daemon -- no downloads, no GPU allocation of your own, no extra installs.
+#
+#   cmb-indic run --suite ollama-available --limit 20     # validate first
+#   cmb-indic run --suite ollama-available                # full 21,256 rows/model
+#
+# IMPORTANT -- all three are quantised GGUF builds (Q4_K_M / INT4 / MXFP4), not
+# bf16. They are legitimate data points but must be labelled as quantised in the
+# report; do not present them as full-precision results.
+#
+# THROUGHPUT WARNING. Ollama on this host runs with 4 parallel slots and the GPUs
+# are shared with other users' jobs. A single 24-token reply measured 13.9s under
+# that contention. At ~4 concurrent requests that is roughly 0.3 rows/second, so a
+# full 21,256-row sweep is on the order of a day per model -- and the token-level
+# splits (LID/POS/NER) are far slower still because they generate one tag per input
+# token. Always run with --limit first and read the reported wall time before
+# committing to a full sweep.
+
+models:
+  - ollama-llama3.1-8b
+  - ollama-qwen3.6-27b
+  - ollama-gpt-oss-20b
+
+run:
+  datasets: [all]
+  shots: 0
+  extraction: robust
+  seed: 1234

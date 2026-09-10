@@ -1,0 +1,16 @@
+hf_id: Qwen/Qwen3-VL-8B-Instruct
+display_name: Qwen3-VL 8B (Instruct)
+params_b: 8
+architecture: dense
+vision: true
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  Current-generation Qwen VLM at ~8B, the "Qwen-VL" entry in your list. Evaluated on
+  text-only prompts, so this measures what the VL post-training did to text
+  code-mixing ability -- the interesting comparison is against qwen3-8b, not against
+  the Gemmas. Qwen2.5-VL-7B-Instruct is the previous generation if you want both.
+dtype: bfloat16
+max_model_len: 16384
+trust_remote_code: true

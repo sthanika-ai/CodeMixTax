@@ -1,0 +1,468 @@
+{
+    "lid_gereng": [
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with German and English. Label each token in the tokenized sentence based on the categories: English ('E'), code-mixed with English and German ('M') or German ('D'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['deshalb', 'wollen', 'die', 'schweizer', 'linken', 'jedem', 'den', 'pass', 'geben', '.', 'papier', 'stiftet', 'enorme', 'identität', '.', 'den', 'roten', 'pass', 'gibts', 'dann', 'auch', 'in', 'diversen', 'leckts', 'mi', 'am', 'a', '.']; Your answer: [{\"deshalb\":\"D\"}, {\"wollen\":\"D\"}, {\"die\":\"D\"}, {\"schweizer\":\"D\"}, {\"linken\":\"D\"}, {\"jedem\":\"D\"}, {\"den\":\"D\"}, {\"pass\":\"E\"}, {\"geben\":\"D\"}, {\".\":\"D\"}, {\"papier\":\"D\"}, {\"stiftet\":\"D\"}, {\"enorme\":\"D\"}, {\"identität\":\"D\"}, {\".\":\"D\"}, {\"den\":\"D\"}, {\"roten\":\"D\"}, {\"pass\":\"E\"}, {\"gibts\":\"D\"}, {\"dann\":\"D\"}, {\"auch\":\"D\"}, {\"in\":\"D\"}, {\"diversen\":\"D\"}, {\"leckts\":\"D\"}, {\"mi\":\"E\"}, {\"am\":\"E\"}, {\"a\":\"E\"}, {\".\":\"E\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+
+    ],
+    "lid_spaeng":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with English and Spanish . Label each token in the tokenized sentence based on the categories: English ('lang1'), Spanish ('lang2'), mixed with English and Spanish ('mixed'), ambiguous language('ambiguous'), foreign word ('fw'), part of named entity ('ne'), unknown language ('unk'), or other language ('other'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['Pronunciación', ':', 'Muchas', 'veces', 'no', 'nos', 'entiendes', 'porq', 'agregamos', 'E', 'antes', 'de', 'la', 'S', 'en', 'School', ',', 'Spanish', ',', 'no', 'es', 'eschool', ',', 'espanish', 'es', 'ssschool', 'sspanish']; Your answer: [{\"Pronunciación\":\"lang2\"}, {\":\":\"other\"}, {\"Muchas\":\"lang2\"}, {\"veces\":\"lang2\"}, {\"no\":\"lang2\"}, {\"nos\":\"lang2\"}, {\"entiendes\":\"lang2\"}, {\"porq\":\"lang2\"}, {\"agregamos\":\"lang2\"}, {\"E\":\"lang2\"}, {\"antes\":\"lang2\"}, {\"de\":\"lang2\"}, {\"la\":\"lang2\"}, {\"S\":\"ambiguous\"}, {\"en\":\"lang2\"}, {\"School\":\"lang1\"}, {\",\":\"other\"}, {\"Spanish\":\"lang2\"}, {\",\":\"other\"}, {\"no\":\"lang2\"}, {\"es\":\"lang2\"}, {\"eschool\":\"lang2\"}, {\",\":\"other\"}, {\"espanish\":\"mixed\"}, {\"es\":\"lang2\"}, {\"ssschool\":\"lang1\"}, {\"sspanish\":\"lang1\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "lid_nepeng":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with Nepali and English. Label each token in the tokenized sentence based on the categories: English ('lang1'), Nepali ('lang2'), mixed with English and Nepali ('mixed'), ambiguous language('ambiguous'), foreign word ('fw'), part of named entity ('ne'), unknown language ('unk'), or other language ('other'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['King', 'is', 'the', 'only', 'option', 'left', '..', '601', 'sarpalai', 'dudh', 'khuwayera', 'palnu', 'vanda', 'euta', 'anacondalai', 'thunera', 'rakhne', 'ni']; Your answer: [{\"King\":\"lang1\"}, {\"is\":\"lang1\"}, {\"the\":\"lang1\"}, {\"only\":\"lang1\"}, {\"option\":\"lang1\"}, {\"left\":\"lang1\"}, {\"..\":\"other\"}, {\"601\":\"other\"}, {\"sarpalai\":\"lang2\"}, {\"dudh\":\"lang2\"}, {\"khuwayera\":\"lang2\"}, {\"palnu\":\"lang2\"}, {\"vanda\":\"lang2\"}, {\"euta\":\"lang2\"}, {\"anacondalai\":\"mixed\"}, {\"thunera\":\"lang2\"}, {\"rakhne\":\"lang2\"}, {\"ni\":\"lang2\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "lid_hineng":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with Hindi and English. Label each token in the tokenized sentence based on the categories: English ('lang1'), Hindi ('lang2'), mixed with English and Hindi('mixed'), ambiguous language('ambiguous'), foreign word ('fw'), part of named entity ('ne'), unknown language ('unk'), or other language ('other'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['1', 'Ladke', 'Ne', 'ek', 'Ladki', 'Ko', 'Call', 'Ki', 'Boy', ':', 'I', 'LOVE', 'U', 'Jaan', 'Girl-Sacchi', 'Boy-Mucchi', 'Girl', ':', 'ek', '100ka', 'Recharge', 'Krwa', 'Do', 'Plz', 'Boy-Sorry', 'Didi', 'Rong', 'Number', '.']; Your answer: [{\"1\":\"other\"}, {\"Ladke\":\"lang2\"}, {\"Ne\":\"lang2\"}, {\"ek\":\"lang2\"}, {\"Ladki\":\"lang2\"}, {\"Ko\":\"lang2\"}, {\"Call\":\"lang1\"}, {\"Ki\":\"lang2\"}, {\"Boy\":\"lang1\"}, {\":\":\"other\"}, {\"I\":\"lang1\"}, {\"LOVE\":\"lang1\"}, {\"U\":\"lang1\"}, {\"Jaan\":\"lang2\"}, {\"Girl-Sacchi\":\"mixed\"}, {\"Boy-Mucchi\":\"mixed\"}, {\"Girl\":\"lang1\"}, {\":\":\"other\"}, {\"ek\":\"lang2\"}, {\"100ka\":\"other\"}, {\"Recharge\":\"lang1\"}, {\"Krwa\":\"lang2\"}, {\"Do\":\"lang2\"}, {\"Plz\":\"lang1\"}, {\"Boy-Sorry\":\"lang1\"}, {\"Didi\":\"lang2\"}, {\"Rong\":\"lang1\"}, {\"Number\":\"lang1\"}, {\".\":\"other\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "lid_msaea":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with Modern Standard Arabic (MSA) and Egyptian Arabic (EA). Label each token in the tokenized sentence based on the categories: MSA ('lang1'), EA ('lang2'), mixed with English and Nepali ('mixed'), ambiguous language ('ambiguous'), foreign word ('fw'), part of named entity ('ne'), unknown language ('unk'), or other language ('other'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['أخي', 'العزيز', ':', 'إياك', 'أن', 'تتخيل', 'إني', 'لما', 'أعملك', 'بلوك', 'يعني', 'عدم', 'إيماني', 'بحرية', 'الرأي', '.', 'بالعكس', 'أنا', 'بأميط', 'الأذى', 'عن', 'طريقي', 'وإماطة', 'الأذى', 'عن', 'الطريق', 'صدقة']; Your answer: [{\"أخي\":\"lang1\"}, {\"العزيز\":\"lang1\"}, {\":\":\"other\"}, {\"إياك\":\"lang1\"}, {\"أن\":\"lang1\"}, {\"تتخيل\":\"lang1\"}, {\"إني\":\"lang2\"}, {\"لما\":\"lang2\"}, {\"أعملك\":\"lang2\"}, {\"بلوك\":\"lang2\"}, {\"يعني\":\"lang2\"}, {\"عدم\":\"lang2\"}, {\"إيماني\":\"lang2\"}, {\"بحرية\":\"lang2\"}, {\"الرأي\":\"lang2\"}, {\".\":\"other\"}, {\"بالعكس\":\"lang2\"}, {\"أنا\":\"lang2\"}, {\"بأميط\":\"mixed\"}, {\"الأذى\":\"lang1\"}, {\"عن\":\"lang1\"}, {\"طريقي\":\"lang1\"}, {\"وإماطة\":\"lang1\"}, {\"الأذى\":\"lang1\"}, {\"عن\":\"lang1\"}, {\"الطريق\":\"lang1\"}, {\"صدقة\":\"lang1\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "lid_mareng":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with Marathi and English. Label each token in the tokenized sentence based on the categories: Marathi('MAR'), English('ENG'), or Other('OTH'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['aamche', 'hey', 'nikhil', 'wagle', 'che', 'supaer', 'fan', 'aahet', 'comedy', 'serial', 'peksha', 'nikhi', 'wagle', 'aavadtaat', 'hyana']; Your answer: [{\"aamche\":\"MAR\"}, {\"hey\":\"ENG\"}, {\"nikhil\":\"OTH\"}, {\"wagle\":\"MAR\"}, {\"che\":\"MAR\"}, {\"supaer\":\"ENG\"}, {\"fan\":\"ENG\"}, {\"aahet\":\"MAR\"}, {\"comedy\":\"ENG\"}, {\"serial\":\"ENG\"}, {\"peksha\":\"MAR\"}, {\"nikhi\":\"OTH\"}, {\"wagle\":\"MAR\"}, {\"aavadtaat\":\"MAR\"}, {\"hyana\":\"MAR\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "lid_guaspa":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with Guarani and Spanish. Label each token in the tokenized sentence based on the categories: Guarani ('gn'), Spanish ('es'), part of named entity ('ne'), mixed between Guarani and Spanish ('mix'), other language ('foreign'), not a language ('other'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['Rodrigo', 'Medina', ',', 'Secretaria', 'de', 'Deportes', ',', 'omombe'u', 'iorekóha', 'hikuái', 'objetivo', 'mbarete', 'oaprovecha', 'ocasión', 'omopyendáva', 'ohechaukávo', 'ciudadanía', 'omomba'eguasúvo', 'practica', 'deporte', 'ndahetái', 'gente', 'ha', 'ikatu', 'haguã', 'ojekuaa']; Your answer: [{\"Rodrigo\":\"ne\"}, {\"Medina\":\"ne\"}, {\",\":\"other\"}, {\"Secretaria\":\"ne\"}, {\"de\":\"ne\"}, {\"Deportes\":\"ne\"}, {\",\":\"other\"}, {\"omombe'u\":\"gn\"}, {\"iorekóha\":\"gn\"}, {\"hikuái\":\"gn\"}, {\"objetivo\":\"es\"}, {\"mbarete\":\"gn\"}, {\"oaprovecha\":\"mix\"}, {\"ocasión\":\"es\"}, {\"omopyendáva\":\"gn\"}, {\"ohechaukávo\":\"gn\"}, {\"ciudadanía\":\"es\"}, {\"omomba'eguasúvo\":\"gn\"}, {\"practica\":\"mix\"}, {\"deporte\":\"es\"}, {\"ndahetái\":\"gn\"}, {\"gente\":\"es\"}, {\"ha\":\"gn\"}, {\"ikatu\":\"gn\"}, {\"haguã\":\"gn\"}, {\"ojekuaa\":\"gn\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "lid_hokman":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with Taiwanese Hokkien and Mandarin. Label each token in the tokenized sentence based on the categories: Taiwanese Hokkien('hok') or Mandarin('man'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['佇', '美', '東', '時', '間', '四', '號', '子', '夜', '十', '一', '點', '宣', '布', '。']; Your answer: [{\"佇\":\"hok\"}, {\"美\":\"man\"}, {\"東\":\"man\"}, {\"時\":\"man\"}, {\"間\":\"man\"}, {\"四\":\"hok\"}, {\"號\":\"hok\"}, {\"子\":\"man\"}, {\"夜\":\"man\"}, {\"十\":\"hok\"}, {\"一\":\"hok\"}, {\"點\":\"hok\"}, {\"宣\":\"hok\"}, {\"布\":\"hok\"}}, {\"。\":\"man\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "lid_fridut":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with Frisian and Dutch. Label each token in the tokenized sentence based on the categories: Frisian ('fr'), Dutch('nl'), mixed with Frisian and Dutch ('fr-nl'), or other language('o'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['mar', 'ja', 'dat', 'ha', 'je', 'wol', 'deselde', 'beelden', 'in', 'bytsje', 'dy', 'je', 'ek', 'yn', 'de', 'Oostvaardersplassen', 'sjugge']; Your answer: [{\"mar\":\"fr\"}, {\"ja\":\"fr\"}, {\"dat\":\"fr\"}, {\"ha\":\"fr\"}, {\"je\":\"fr\"}, {\"wol\":\"fr\"}, {\"deselde\":\"fr\"}, {\"beelden\":\"fr-nl\"}, {\"in\":\"fr\"}, {\"bytsje\":\"fr\"}, {\"dy\":\"fr\"}, {\"je\":\"fr\"}, {\"ek\":\"fr\"}, {\"yn\":\"fr\"}, {\"de\":\"fr\"}, {\"Oostvaardersplassen\":\"nl\"}, {\"sjugge\":\"fr\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "lid_chieng":[
+        {
+            "role": "system","content": "You are a smart and intelligent language identification (LID) system. You will receive a tokenized sentence code-mixed with Chinese and English. Label each token in the tokenized sentence based on the categories: Chinese('chi'), English('eng'), or Punctuation('punc'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['详情', '请', '看', 'google', 'drive', '链接', '。']; Your answer: [{\"详情\":\"chi\"}, {\"请\":\"chi\"}, {\"看\":\"chi\"}, {\"google\":\"eng\"}, {\"drive\":\"eng\"}, {\"链接\":\"chi\"}, {\"。\":\"punc\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "pos_hineng":[
+        {
+            "role": "system","content": "You are a smart and intelligent part of speech (POS) system. You will receive a tokenized sentence code-mixed with Hindi and English. Label each token in the tokenized sentence based on the categories: 'ADJ', 'ADP', 'ADV', 'AUX', 'CONJ', 'DET', 'INTJ', 'NOUN', 'NUM', 'PART', 'PRON', 'PROPN', 'PUNCT', 'SCONJ', 'VERB', 'X', 'PART_NEG', 'PRON_WH', or 'UNK'. Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['G', 'mre', 'Bharat', 'k', 'Bhaio', ',', 'chuna', 'lga', 'dia', 'na', ',', 'Bollywood', 'se', 'bhar', 'ao', '.', '#SurgicalStrike', '..', '1', 'thing', 'V', 'both', 'PK', 'n', 'India', 'shud', 'stop', 'electing', 'cartoons', 'as', 'PM', '.', 'https://t.co/ka3D35NxRO']; Your answer: [{\"G\":\"PART\"}, {\"mre\":\"ADJ\"}, {\"Bharat\":\"PROPN\"}, {\"k\":\"ADP\"}, {\"Bhaio\":\"NOUN\"}, {\",\":\"X\"}, {\"chuna\":\"NOUN\"}, {\"lga\":\"VERB\"}, {\"dia\":\"VERB\"}, {\"na\":\"PART_NEG\"}, {\",\":\"X\"}, {\"Bollywood\":\"PROPN\"}, {\"se\":\"ADP\"}, {\"bhar\":\"ADJ\"}, {\"ao\":\"PART\"}, {\".\":\"X\"}, {\"#SurgicalStrike\":\"X\"}, {\"..\":\"X\"}, {\"1\":\"NUM\"}, {\"thing\":\"NOUN\"}, {\"V\":\"PROPN\"}, {\"both\":\"PRON\"}, {\"PK\":\"PROPN\"}, {\"n\":\"CONJ\"}, {\"India\":\"PROPN\"}, {\"shud\":\"VERB\"}, {\"stop\":\"VERB\"}, {\"electing\":\"ADJ\"}, {\"cartoons\":\"NOUN\"}, {\"as\":\"ADP\"}, {\"PM\":\"PROPN\"}, {\".\":\"X\"}, {\"https://t.co/ka3D35NxRO\":\"X\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "pos_spaeng":[
+        {
+            "role": "system","content": "You are a smart and intelligent part of speech (POS) system. You will receive a tokenized sentence code-mixed with Spanish and English. Label each token in the tokenized sentence based on the categories: 'ADJ', 'ADP', 'ADV', 'AUX', 'CONJ', 'DET', 'INTJ', 'NOUN', 'NUM', 'PART', 'PRON', 'PROPN', 'PUNCT', 'SCONJ', 'VERB', 'X', or 'UNK'. Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['yo', 'tengo', 'ahí', 'ella', 'me', 'él', 'él', 'me', 'dio', 'una', 'copia', 'que', 'ahora', 'yo', 'tengo', 'que', 'hacérsela+', '+se', 'pero', 'yo', 'te', 'la', 'voy', 'a', 'hacer', 'una', 'copia', 'esa', '.']; Your answer: [{\"yo\":\"PRON\"}, {\"tengo\":\"VERB\"}, {\"ahí\":\"ADV\"}, {\"ella\":\"PRON\"}, {\"me\":\"PRON\"}, {\"él\":\"PRON\"}, {\"él\":\"PRON\"}, {\"me\":\"PRON\"}, {\"dio\":\"VERB\"}, {\"una\":\"DET\"}, {\"copia\":\"NOUN\"}, {\"que\":\"PRON\"}, {\"ahora\":\"ADV\"}, {\"yo\":\"PRON\"}, {\"tengo\":\"AUX\"}, {\"que\":\"SCONJ\"}, {\"hacérsela+\":\"VERB\"}, {\"+se\":\"PRON\"}, {\"pero\":\"CONJ\"}, {\"yo\":\"PRON\"}, {\"te\":\"PRON\"}, {\"la\":\"PRON\"}, {\"voy\":\"AUX\"}, {\"a\":\"ADP\"}, {\"hacer\":\"VERB\"}, {\"una\":\"DET\"}, {\"copia\":\"NOUN\"}, {\"esa\":\"PRON\"}, {\".\":\"PUNCT\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "pos_chieng":[
+        {
+            "role": "system","content": "You are a smart and intelligent part of speech (POS) system. You will receive a tokenized sentence code-mixed with Chinese and English. Label each token in the tokenized sentence based on the categories: VA, VC, VE, VV, NR, NT, NN, LC, PN, DT, CD, OD, M, AD, P, CC, CS, DEC, DEG, DER, DEV, AS, SP, ETC, MSP, IJ, LB, SB, BA, JJ, PU. Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['若', '收到', '此', '类', '邮件', '，', '各位', '同学', '可', '先', '通过', 'google', '来', '搜索', '专门', '报告', '垃圾', '邮件', '和', '诈骗', '邮件', '的', '网站', '，', '并', '输入', '你', '收到', '的', '邮箱', '地址', '来', '查看', '是否', '为', '诈骗', '邮件', '。']; Your answer: [{\"若\":\"CS\"}, {\"收到\":\"VV\"}, {\"此\":\"DT\"}, {\"类\":\"M\"}, {\"邮件\":\"NN\"}, {\"，\":\"PU\"}, {\"各位\":\"DT\"}, {\"同学\":\"NN\"}, {\"可\":\"VV\"}, {\"先\":\"AD\"}, {\"通过\":\"P\"}, {\"google\":\"NR\"}, {\"来\":\"MSP\"}, {\"搜索\":\"VV\"}, {\"专门\":\"AD\"}, {\"报告\":\"VV\"}, {\"垃圾\":\"NN\"}, {\"邮件\":\"NN\"}, {\"和\":\"CC\"}, {\"诈骗\":\"NN\"}, {\"邮件\":\"NN\"}, {\"的\":\"DEC\"}, {\"网站\":\"NN\"}, {\"，\":\"PU\"}, {\"并\":\"CC\"}, {\"输入\":\"VV\"}, {\"你\":\"PN\"}, {\"收到\":\"VV\"}, {\"的\":\"DEC\"}, {\"邮箱\":\"NN\"}, {\"地址\":\"NN\"}, {\"来\":\"MSP\"}, {\"查看\":\"VV\"}, {\"是否\":\"AD\"}, {\"为\":\"VC\"}, {\"诈骗\":\"NN\"}, {\"邮件\":\"NN\"}, {\"。\":\"PU\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "pos_fridut":[
+        {
+            "role": "system","content": "You are a smart and intelligent part of speech (POS) system. You will receive a tokenized sentence code-mixed with Frisian and Dutch. Label each token in the tokenized sentence based on the categories: 'ADJ', 'ADP', 'ADV', 'AUX', 'CCONJ', 'DET', 'INTJ', 'NOUN', 'NUM', 'PRON', 'PROPN', 'SCONJ', or 'VERB'. Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['mar', 'ja', 'dat', 'ha', 'je', 'wol', 'deselde', 'beelden', 'in', 'bytsje', 'dy', 'je', 'ek', 'yn', 'de', 'Oostvaardersplassen', 'sjugge']; Your answer: [{\"mar\":\"CCONJ\"}, {\"ja\":\"INTJ\"}, {\"dat\":\"PRON\"}, {\"ha\":\"VERB\"}, {\"je\":\"PRON\"}, {\"wol\":\"ADV\"}, {\"deselde\":\"ADJ\"}, {\"beelden\":\"NOUN\"}, {\"in\":\"DET\"}, {\"bytsje\":\"NOUN\"}, {\"dy\":\"PRON\"}, {\"je\":\"PRON\"}, {\"ek\":\"ADV\"}, {\"yn\":\"ADP\"}, {\"de\":\"DET\"}, {\"Oostvaardersplassen\":\"PROPN\"}, {\"sjugge\":\"VERB\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "ner_hineng":[
+        {
+            "role": "system","content": "You are a smart and intelligent named entity recognition (NER) system. You will receive a tokenized sentence code-mixed with Hindi and English. Label each token in the tokenized sentence using BIO scheme based on the categories: person('PERSON'), place('PLACE'), organization('ORGANISATION'). You must tag every token in the tokenized sentence in order, without skipping or missing any token for any reason. Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['Shree', 'Arvind', '#Kejriwal', 'Delhi', 'se', 'Latur', 'ko', 'apne', 'AAP', 'pani', 'bhejte', 'hue', '....', 'https://t.co/8HTJLVhFlN'] ; Your answer: [{\"Shree\":\"O\"}, {\"Arvind\":\"B-PERSON\"}, {\"#Kejriwal\":\"O\"}, {\"Delhi\":\"B-PLACE\"}, {\"se\":\"O\"}, {\"Latur\":\"B-PLACE\"}, {\"ko\":\"O\"}, {\"apne\":\"O\"}, {\"AAP\":\"B-ORGANISATION\"}, {\"pani\":\"O\"}, {\"bhejte\":\"O\"}, {\"hue\":\"O\"}, {\"....\":\"O\"}, {\"https://t.co/8HTJLVhFlN\":\"O\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "ner_spaeng":[
+        {
+            "role": "system","content": "You are a smart and intelligent named entity recognition (NER) system. You will receive a tokenized sentence code-mixed with Spanish and English. Label each token in the tokenized sentence using BIO scheme based on the categories: Person('PER'), Organization('ORG'), Location('LOC'), Group('GROUP'), Product('PROD'), Title('TITLE'), Event('EVENT'), Time('TIME'), Other('OTHER'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['Late', 'Post', '..', '.', 'Esto', 'fue', 'el', 'Jueves', 'en', 'the', 'bank', '.', 'Concierto', 'alexis', 'y', 'fido', '.', '#Elvacilondelagatita', 'http://t.co/8gXjIPozgr'] ; Your answer: [{\"Late\":\"O\"}, {\"Post\":\"O\"}, {\"..\":\"O\"}, {\".\":\"O\"}, {\"Esto\":\"O\"}, {\"fue\":\"O\"}, {\"el\":\"O\"}, {\"Jueves\":\"B-TIME\"}, {\"en\":\"O\"}, {\"the\":\"B-LOC\"}, {\"bank\":\"I-LOC\"}, {\".\":\"O\"}, {\"Concierto\":\"O\"}, {\"alexis\":\"B-PER\"}, {\"y\":\"O\"}, {\"fido\":\"B-PER\"}, {\".\":\"O\"}, {\"#Elvacilondelagatita\":\"O\"}, {\"http://t.co/8gXjIPozgr\":\"O\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "ner_guaspa":[
+        {
+            "role": "system","content": "You are a smart and intelligent named entity recognition (NER) system. You will receive a tokenized sentence code-mixed with Guarani and Spanish. Label each token in the tokenized sentence using BIO scheme based on the categories: person('per'), organization('org'), location('loc'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['Pyharevéte', ',', 'umi', 'agente', 'Jefe', 'Departamento', 'Antinarcóticos', 'Policía', 'Nacional', ',', 'Crio.', 'Ppal.', 'Baldomero', 'Jorgge', ',', 'ojapóva', 'allanamiento', 'reserva', 'forestal', 'Estancia', '\"\"', 'Urunde'y', '\"\"', ',', 'Colonia', 'Estrella', ',', 'oîva', '40', 'km', 'capital', 'departamental', '.']; Your answer: [{\"Pyharevéte\":\"o\"}, {\",\":\"o\"}, {\"umi\":\"o\"}, {\"agente\":\"o\"}, {\"Jefe\":\"o\"}, {\"Departamento\":\"b-org\"}, {\"Antinarcóticos\":\"i-org\"}, {\"Policía\":\"i-org\"}, {\"Nacional\":\"i-org\"}, {\",\":\"o\"}, {\"Crio.\":\"b-per\"}, {\"Ppal.\":\"i-per\"}, {\"Baldomero\":\"i-per\"}, {\"Jorgge\":\"i-per\"}, {\",\":\"o\"}, {\"ojapóva\":\"o\"}, {\"allanamiento\":\"o\"}, {\"reserva\":\"o\"}, {\"forestal\":\"o\"}, {\"Estancia\":\"b-loc\"}, {\"\"\"\":\"i-loc\"}, {\"Urunde'y\":\"i-loc\"}, {\"\"\"\":\"i-loc\"}, {\",\":\"o\"}, {\"Colonia\":\"b-loc\"}, {\"Estrella\":\"i-loc\"}, {\",\":\"o\"}, {\"oîva\":\"o\"}, {\"40\":\"o\"}, {\"km\":\"o\"}, {\"capital\":\"o\"}, {\"departamental\":\"o\"}, {\".\":\"o\"}]  >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "ner_msaea":[
+        {
+            "role": "system","content": "You are a smart and intelligent named entity recognition (NER) system. You will receive a tokenized sentence code-mixed with Modern Standard Arabic and Egyptian Arabic. Label each token in the tokenized sentence using BIO scheme based on the categories: Person('PER'), Organization('ORG'), Location('LOC'), Group('GROUP'), Product('PROD'), Title('TITLE'), Event('EVENT'), Time('TIME'), Other('OTHER'). Fill in this format: [{specific token_1: ''}, {specific token_2: ''}]. Please refer to the example: < Tokenized sentence: ['احيي', 'الشيخ', 'حسن', 'عبد', 'البصير', 'امام', 'مسجد', 'سيدى', 'جابر', 'الذي', 'رفض', 'تعليمات', 'الأوقاف', 'بنفاق', 'مرسي', 'في', 'خطبة', 'الجمعة', '.', 'تعلموا', 'الاستقامة', 'أيها', 'الاخوان', 'الكاذبون']; Your answer: [{\"احيي\":\"O\"}, {\"الشيخ\":\"O\"}, {\"حسن\":\"B-PER\"}, {\"عبد\":\"I-PER\"}, {\"البصير\":\"I-PER\"}, {\"امام\":\"O\"}, {\"مسجد\":\"B-LOC\"}, {\"سيدى\":\"I-LOC\"}, {\"جابر\":\"I-LOC\"}, {\"الذي\":\"O\"}, {\"رفض\":\"O\"}, {\"تعليمات\":\"O\"}, {\"الأوقاف\":\"B-ORG\"}, {\"بنفاق\":\"O\"}, {\"مرسي\":\"B-PER\"}, {\"في\":\"O\"}, {\"خطبة\":\"O\"}, {\"الجمعة\":\"B-TIME\"}, {\".\":\"O\"}, {\"تعلموا\":\"O\"}, {\"الاستقامة\":\"O\"}, {\"أيها\":\"O\"}, {\"الاخوان\":\"B-GROUP\"}, {\"الكاذبون\":\"O\"}] >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "sa_hineng":[
+        {
+            "role": "system","content": "You are a smart and intelligent sentiment analysis (SA) system. I will give you a code-mixed sentence that has been mixed with Hindi and English. Assign the appropriate label from: ['positive', 'negative', or 'neutral']. Please refer to the examples I provided: < Sentence: koi mujhe bataega du colleges ke form ki cutt off kab aayegi ; Your answer: positive >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "sa_spaeng":[
+        {
+            "role": "system","content": "You are a smart and intelligent sentiment analysis (SA) system. I will give you a code-mixed sentence that has been mixed with Spanish and English. Assign the appropriate label from: ['positive', 'negative', or 'neutral']. Please refer to the examples I provided: < Sentence: Then again I just stood up and I might still be Lil tipsy jajaj ; Your answer: positive >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "sa_beneng":[
+        {
+            "role": "system","content": "You are a smart and intelligent sentiment analysis (SA) system. I will give you a code-mixed sentence that has been mixed with Bengali and English. Assign the appropriate label from: ['O', 'N']. 'O' indicates Offensive, 'N' indicates None-offensive. Please refer to the examples I provided: < Sentence: A holo bastard r Jew ; Your answer: O >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "sa_maleng":[
+        {
+            "role": "system","content": "You are a smart and intelligent sentiment analysis (SA) system. I will give you a code-mixed sentence that has been mixed with Malayalam and English. Assign the appropriate label from: ['Positive', 'Negative', 'Neutral', or 'Mixed_feelings']. Please refer to the examples I provided: < Sentence: Mammookka fans like adi. Love u ikka; Your answer: Positive >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "sa_tameng":[
+        {
+            "role": "system","content": "You are a smart and intelligent sentiment analysis (SA) system. I will give you a code-mixed sentence that has been mixed with Tamil and English. Assign the appropriate label from: ['Positive', 'Negative', 'Neutral', or 'Mixed_feelings']. Please refer to the examples I provided: < Sentence: Enakku iru mugan trailer gnabagam than varuthu ; Your answer: Positive >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "sa_nepeng":[
+        {
+            "role": "system","content": "You are a smart and intelligent sentiment analysis (SA) system. I will give you a code-mixed sentence that has been mixed with Nepali and English. Assign the appropriate label from: ['Positive', 'Negative', or 'Neutral']. Please refer to the examples I provided: < Sentence: mr sthapit from uml is good too . best wishes raj ; Your answer: Positive >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "sa_mareng":[
+        {
+            "role": "system","content": "You are a smart and intelligent sentiment analysis (SA) system. I will give you a code-mixed sentence that has been mixed with Marathi and English. Assign the appropriate label from: ['positive', 'negative', or 'neutral']. Please refer to the examples I provided: < Sentence: @USER dili party dili ..! Kya pahije kya pahije saang phakt ...! ; Your answer: positive >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_chieng_chi":[
+        {
+            "role": "system","content": "You will receive a sentence code-mixed with Chinese and English. Translate the given sentence into Chinese: Please refer to the examples I provided: < Sentence: 详情请看google drive链接; Your answer: 详情请看谷歌云盘链接 >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_hineng_eng":[
+        {
+            "role": "system","content": "You will receive a sentence code-mixed with Hindi and English. Translate the given sentence into English. Please refer to the examples I have provided: < Sentence: Kya logon ko pata tha that they were super heroes?; Your answer: Did people know that they were super heroes? >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_spaeng":[
+        {
+            "role": "system","content": ""
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_msaea":[
+        {
+            "role": "system","content": ""
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_beneng_eng":[
+        {
+            "role": "system","content": "You will receive a sentence code-mixed with Bengali and English. Translate the given sentence into English. Please refer to the examples I have provided: < Sentence: আমার কাছে Calculus course এর course overview রয়েছে।; Your answer: I have with me, the course overview of my Calculus course. >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_mareng_eng":[
+        {
+            "role": "system","content": "You will receive a sentence code-mixed with Marathi and English. Translate the given sentence into English. Please refer to the examples I have provided: < Sentence: energy level diagram मधील इलेक्ट्रॉन संक्रमणे पहा.; Your answer: Observe the electronic transitions in energy level diagram. >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_hokman_man":[
+        {
+            "role": "system","content": "You will receive a sentence code-mixed with Taiwanese Hokkien and Mandarin. Translate the given sentence into traditional Mandarin. Please refer to the examples I have provided: < Sentence: 佇美東時間四號深夜十一點宣布; Your answer: 在美東時間四日深夜十一時宣布 >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_chieng_eng":[
+        {
+            "role": "system","content": "You will receive a sentence code-mixed with Chinese and English. Translate the given sentence into English. Please refer to the examples I have provided: < Sentence: 你也许认为左边这张图是 male, 右边这张图是 female.; Your answer: You probably think the picture on the left is male, the one on the right is female. >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_spaeng_eng":[
+        {
+            "role": "system","content": "You will receive a sentence code-mixed with Spanish and English. Translate the given sentence into English. Please refer to the examples I have provided: < Sentence: Es importante notar también que these figures only tell parte de la historia.; Your answer: What is also important is to note that these figures only tell part of the story. >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mt_araeng_eng":[
+        {
+            "role": "system","content": "You will receive a sentence code-mixed with Arabic and English. Translate the given sentence into English. Please refer to the examples I have provided: < Sentence: لان احد من her favorite folks من مدينتها هنا، وهي pretty nervous لمقابلته.; Your answer: Because one of her favorite folks from back home is here, and she's pretty nervous to meet him. >."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_chieng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_spaeng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_araeng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_gereng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_beneng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_duteng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_hineng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_maleng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_mareng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_freeng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_nepeng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "mmlu_tameng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+   
+    ],
+    "mmlu_onlyeng":[
+        {
+            "role": "system","content": "You are a system possessing knowledge in all subjects. You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "gsm8k_araeng":[
+        {
+            "role": "system","content": "You are skilled at solving mathematical problems."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "gsm8k_chieng":[
+        {
+            "role": "system","content": "You are skilled at solving mathematical problems."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "gsm8k_hineng":[
+        {
+            "role": "system","content": "You are skilled at solving mathematical problems."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "gsm8k_spaeng":[
+        {
+            "role": "system","content": "You are skilled at solving mathematical problems."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "gsm8k_onlyeng":[
+        {
+            "role": "system","content": "You are skilled at solving mathematical problems."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "truthfulqa_araeng":[
+        {
+            "role": "system","content": "You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "truthfulqa_hineng":[
+        {
+            "role": "system","content": "You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "truthfulqa_spaeng":[
+        {
+            "role": "system","content": "You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "truthfulqa_chieng":[
+        {
+            "role": "system","content": "You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ],
+    "truthfulqa_onlyeng":[
+        {
+            "role": "system","content": "You are skilled at selecting the correct answer based on multiple choice questions. Do not include explanation in your answer."
+        },
+        {
+            "role": "user", "content": ""
+        }
+    ]
+}

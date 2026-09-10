@@ -1,0 +1,39 @@
+hf_id: nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16
+display_name: Nemotron 3.5 Lightning 30B-A3B
+params_b: 30
+architecture: MoE hybrid, Mamba-2 + attention + 128 experts top-6 (3B active)
+vision: false
+license: nvidia-open-model
+gated: false
+status: verified
+notes: >-
+  Reasoning model, thinking on by default -- the chat template pre-opens <think> in
+  the assistant turn. Scored like sarvam-m-24b and sarvam-30b: reasoning: true, so a
+  trace truncated by the budget scores UNK instead of donating a letter lifted out of
+  the reasoning.
+
+  Budget follows NVIDIA's own examples (max_tokens=16000), NOT the 65536 Sarvam-30B
+  demanded. The Mamba-2 hybrid carries KV on only a minority of layers, so the KV
+  cache holds 1.45M tokens against Sarvam-30B's 478k -- 88x concurrency at a 16k
+  window versus 7x at 66k. That is why this model is affordable and Sarvam-30B was not.
+
+  Use the BF16 repo. The -NVFP4 sibling needs compute capability >=8.9 (A100 is 8.0),
+  the bare -30B-A3B repo is gated (HTTP 401), and every GGUF build is unloadable
+  because vLLM 0.27.1 dropped GGUF support and transformers has no nemotron_h_moe
+  converter even on main.
+
+  Runs on vLLM 0.27.1 (.venv-new) with VLLM_USE_FLASHINFER_SAMPLER=0.
+trust_remote_code: true
+dtype: bfloat16
+max_model_len: 16384
+reasoning: true
+gpu_memory_utilization: 0.92
+# Straight to NVIDIA's own budget (max_tokens=16000) rather than climbing a ladder.
+# A 100-row probe on MMLU HI-ROM -- the worst condition across all 15 models -- left
+# 24% truncated at 4096 with p50 1665, so 4096 is far too tight. 16000 fits alongside
+# a ~200-token prompt inside the 16384 window, and concurrency there is ~88x, so the
+# bigger budget is nearly free. Sarvam-30B is the cautionary case: its author budget
+# was 65536, which collapsed concurrency to 7x and made the sweep unaffordable.
+task_overrides:
+  mmlu: { max_tokens: 16000 }
+  gsm8k: { max_tokens: 16000 }

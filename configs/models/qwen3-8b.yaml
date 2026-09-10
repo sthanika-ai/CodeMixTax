@@ -1,0 +1,18 @@
+hf_id: Qwen/Qwen3-8B
+display_name: Qwen3 8B
+params_b: 8
+architecture: dense
+vision: false
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  True 8B dense model, the other reading of the "Qwen3.6 8B" request. Pairs with
+  qwen3-8b-int4 for the 8B-class quantisation comparison.
+dtype: bfloat16
+max_model_len: 16384
+reasoning: true
+chat_template_kwargs:
+  enable_thinking: false
+task_overrides:
+  gsm8k: { max_tokens: 2048 }

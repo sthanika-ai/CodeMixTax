@@ -1,0 +1,23 @@
+hf_id: deepseek-ai/DeepSeek-V4-Flash
+display_name: DeepSeek V4 Flash
+params_b: null
+architecture: moe
+vision: false
+license: other
+gated: false
+status: verified
+notes: >-
+  SIZE UNCONFIRMED. You asked for "DeepSeek V4 (large MoE)"; the V4 line publishes
+  Flash and Pro variants (plus -Base and dated snapshots). Flash is chosen as the
+  locally feasible one -- Pro is the large sibling and is very unlikely to fit on a
+  single node. Fill in params_b from the model card before publishing, and set
+  tensor_parallel_size to match your hardware. Reasoning model: hidden CoT is
+  stripped before scoring.
+dtype: bfloat16
+tensor_parallel_size: 8
+max_model_len: 16384
+gpu_memory_utilization: 0.92
+trust_remote_code: true
+reasoning: true
+task_overrides:
+  gsm8k: { max_tokens: 4096 }

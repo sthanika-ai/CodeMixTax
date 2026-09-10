@@ -1,0 +1,19 @@
+hf_id: krutrim-ai-labs/Krutrim-2-instruct
+display_name: Krutrim-2 12B (Instruct)
+params_b: 12
+architecture: dense (Mistral base)
+vision: false
+license: other
+gated: false
+status: verified
+notes: >-
+  Ola's Indic model, built on a Mistral base -- which makes it the second controlled
+  pair in this study alongside Sarvam-M 24B vs Mistral Small 3.1 24B: an Indic-tuned
+  model and its untuned base family, so a difference on romanized Hindi is
+  attributable to the tuning rather than to general capability.
+dtype: bfloat16
+max_model_len: 8192
+gpu_memory_utilization: 0.90
+task_overrides:
+  mmlu: { max_tokens: 512 }
+  gsm8k: { max_tokens: 4096 }

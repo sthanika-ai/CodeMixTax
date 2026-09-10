@@ -1,0 +1,24 @@
+# 5-shot variant of the reasoning/knowledge tasks only.
+#
+#   cmb-indic run --suite fewshot-5
+#
+# Only MMLU, GSM8K and TruthfulQA consume `shots` -- the other five tasks carry
+# their single example inside the upstream system prompt, so running them again at
+# --shots 5 would produce byte-identical prompts and waste GPU time.
+#
+# This is also the suite to use for sarvam-1-2b, which is a base model and needs
+# in-context examples to produce parseable output at all.
+
+models:
+  - gemma3-12b-it
+  - qwen3-8b
+  - llama3.1-8b-it
+  - sarvam-1-2b
+  - sarvam-m-24b
+  - phi-4-14b
+
+run:
+  datasets: [mmlu, gsm8k, truthfulqa]
+  shots: 5
+  extraction: robust
+  seed: 1234

@@ -1,0 +1,24 @@
+hf_id: sarvamai/sarvam-1
+display_name: Sarvam-1 2B (base)
+params_b: 2
+architecture: dense
+vision: false
+license: other
+gated: false
+status: verified
+notes: >-
+  BASE model, NOT instruction-tuned -- it has no chat template and will not follow
+  a zero-shot instruction. Configured with prompt_style completion, and you should
+  run it with --shots 5 on MMLU/GSM8K/TruthfulQA. Expect near-zero scores on the
+  structured token tasks (LID/POS/NER) whatever you do: emitting a well-formed
+  per-token JSON list is an instruction-following skill this checkpoint lacks. That
+  is a real finding about base models, not a pipeline bug -- read the
+  `unparsed_rate` column alongside the score. Its value here is as the Indic-first
+  small-model reference point.
+prompt_style: completion
+dtype: bfloat16
+# 8192 is the checkpoint's full max_position_embeddings. 4096 is too small here:
+# the GSM8K budget alone is 4096 tokens, and a 5-shot chain-of-thought prompt adds
+# roughly 900 more, so a 4096 window would truncate every single GSM8K row.
+max_model_len: 8192
+stop: ["\n\n\n", "Problem:", "Sentence:"]

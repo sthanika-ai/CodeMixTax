@@ -1,0 +1,14 @@
+# Fake backend for smoke tests and CI. Needs no GPU, no server, no network
+# (after `cmb-indic download`). Exercises the full pipeline end to end.
+#
+#   cmb-indic run --models echo-debug --limit 20
+#
+# Scores from this config are meaningless by construction -- it is a plumbing test.
+hf_id: echo/debug
+display_name: Echo (debug backend)
+backend: echo
+params_b: 0
+architecture: none
+license: n/a
+status: verified
+notes: Synthetic canned answers; used to validate the harness, never to measure a model.

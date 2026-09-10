@@ -1,0 +1,31 @@
+# Everything that fits comfortably on one 48 GB card (bf16, or INT4 where noted).
+# This is the practical starting sweep for a benchmark report: it covers all five
+# languages, all eight tasks, and the three comparisons that carry the most signal.
+#
+#   cmb-indic run --suite single-gpu
+#
+# Comparisons this suite is built around:
+#   1. Indic tuning       sarvam-m-24b   vs mistral-small-3.1-24b  (same size + base)
+#   2. INT4 quantisation  qwen3-8b-int4  vs qwen3-8b               (first-party AWQ)
+#   3. Scale within family gemma3-4b-it  vs gemma3-12b-it
+#   4. Base vs instruct   sarvam-1-2b    vs everything else
+
+models:
+  - gemma3-4b-it
+  - gemma3-12b-it
+  - gemma3-12b-it-int4
+  - gemma4-12b-it
+  - qwen3-8b
+  - qwen3-8b-int4
+  - qwen3-vl-8b
+  - llama3.1-8b-it
+  - phi-4-14b
+  - sarvam-1-2b
+  - sarvam-m-24b
+  - mistral-small-3.1-24b
+
+run:
+  datasets: [all]
+  shots: 0
+  extraction: robust
+  seed: 1234

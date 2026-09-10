@@ -1,0 +1,83 @@
+CodeMixTax
+==================
+
+This repository contains two distinct bodies of work with different provenance.
+Please preserve this file when redistributing.
+
+
+1. Derived work (this fork) -- MIT License, see LICENSE
+-------------------------------------------------------
+The evaluation pipeline for local/open-weight models:
+
+    src/cmb_indic/**        configs/**        scripts/**
+    tests/**                docs/**          results/**
+    runs/**                 Makefile         pyproject.toml
+    README.md
+
+Relicensing note: upstream CodeMixBench is Apache-2.0. Apache 2.0 section 4
+permits distributing a derivative work under different terms provided the
+original notices are retained, so this fork's own contributions are offered
+under the MIT License while the retained upstream files (item 2) stay under
+Apache 2.0. The Apache text is preserved as LICENSE.upstream-Apache-2.0 and
+continues to govern those files.
+
+The metric implementations in `src/cmb_indic/metrics.py` are faithful ports of
+`compute_token_label_Metric`, `compute_sentence_label_Metric` and `compute_BLEU`
+from the upstream `utils.py` (see item 2), refactored to be side-effect free.
+Scores produced by this pipeline are therefore directly comparable to the
+upstream implementation for those metrics. Deviations are enumerated in
+docs/DEVIATIONS.md.
+
+
+2. Upstream CodeMixBench -- Apache License 2.0, retained unmodified
+-------------------------------------------------------------------
+These files are NOT covered by this fork's MIT license. They remain under the
+Apache License 2.0 (see LICENSE.upstream-Apache-2.0).
+    utils.py                test_model.py    oaib/
+    prompt.json             pics/            requirements.txt
+    docs/upstream_README.md (the original README.md)
+
+Upstream repository: https://github.com/Jeromeyluck/CodeMixBench
+Upstream authors:    Yilun Yang, Yekun Chai
+
+Security patch (does not change behaviour or license status): `utils.py` and
+`test_model.py` had three `eval()` calls replaced with `ast.literal_eval()`,
+`utils.py`'s `load_dataset_from_hf` gained an optional `revision` argument so
+the Hub fetch can be pinned to a commit (default `None` keeps the original
+behaviour), and `requirements.txt` had three pins raised to their patched
+releases: `scikit_learn` 1.0.2 -> 1.5.0 (CVE-2024-5206), `datasets` 2.18.0 ->
+5.0.1 (CVE-2026-66007) and `tqdm` 4.66.2 -> 4.66.3 (CVE-2024-34062). See
+docs/DEVIATIONS.md item 11 for the rationale and docs/SECURITY.md for the full
+dependency posture -- the files are otherwise byte-identical to upstream.
+
+`prompt.json` is upstream benchmark data. This fork reads the prompt templates
+from it verbatim so that prompting stays identical to the published benchmark;
+it is not modified.
+
+
+3. Dataset -- Apache License 2.0
+--------------------------------
+    https://huggingface.co/datasets/CodeMixBench/CodeMixBench
+
+Declared license on the dataset card: apache-2.0.
+
+The dataset is NOT vendored into this repository. It is downloaded at runtime by
+`scripts/download_data.py` into `data/raw/` (gitignored). Note that the
+CodeMixBench splits are themselves adapted from prior corpora (LinCE, GLUECoS,
+MMLU, GSM8K, TruthfulQA, and several Dravidian code-mixed sentiment datasets);
+if you redistribute derived data, check the terms of those upstream sources too.
+
+
+4. Model weights
+----------------
+Every model evaluated here carries its own license, several of which are NOT
+OSI-approved and restrict redistribution or commercial use (e.g. the Gemma Terms
+of Use, the Llama Community License). No weights are included in this
+repository. Consult each model card before publishing results or derivatives.
+
+
+Citation
+--------
+If you use this pipeline or its results, please cite the upstream paper in
+addition to this repository. See CITATION.cff and the "Citing" section of
+README.md.

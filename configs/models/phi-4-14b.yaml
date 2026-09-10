@@ -1,0 +1,19 @@
+hf_id: microsoft/phi-4
+display_name: Phi-4 14B
+params_b: 14
+architecture: dense
+vision: false
+license: mit
+gated: false
+status: verified
+notes: >-
+  Heavily synthetic-data-trained and English-centric, which makes it the sharpest
+  test in the suite of whether strong reasoning transfers to code-mixed Indic input.
+  Expect a large gap between its MMLU/GSM8K scores and its LID/POS/NER scores.
+dtype: bfloat16
+max_model_len: 16384
+
+task_overrides:
+  mmlu: { max_tokens: 512 }
+  truthfulqa: { max_tokens: 512 }
+  gsm8k: { max_tokens: 4096 }

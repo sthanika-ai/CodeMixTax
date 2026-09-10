@@ -1,0 +1,9 @@
+asyncio==3.4.3
+config==0.5.1
+datasets==5.0.1
+openai==1.107.0
+pandas==1.4.2
+replicate==0.25.2
+sacrebleu==2.4.1
+scikit_learn==1.5.0
+tqdm==4.66.3

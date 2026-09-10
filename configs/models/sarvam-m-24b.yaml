@@ -1,0 +1,26 @@
+hf_id: sarvamai/sarvam-m
+display_name: Sarvam-M 24B
+params_b: 24
+architecture: dense (Mistral Small base)
+vision: false
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  Indic-tuned on a Mistral Small 24B base, which makes mistral-small-3.1-24b the
+  controlled comparison: same size, same base family, one Indic-tuned and one not.
+  That pair is the most informative single result in this whole suite for an
+  Indic-focused report. Emits a reasoning trace in some modes; hidden CoT is
+  stripped before scoring either way.
+dtype: bfloat16
+max_model_len: 16384
+reasoning: true
+
+# 2048, not 512: this model reasons in plain prose before answering, and at 512 it
+# truncated 35% of MMLU rows mid-trace. A truncated trace now scores as unparsed
+# rather than yielding a letter lifted from the reasoning, so too small a budget
+# shows up as a collapsed score instead of a plausible-looking wrong one.
+task_overrides:
+  mmlu: { max_tokens: 2048 }
+  truthfulqa: { max_tokens: 2048 }
+  gsm8k: { max_tokens: 4096 }

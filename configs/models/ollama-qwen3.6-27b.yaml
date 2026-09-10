@@ -1,0 +1,40 @@
+# Qwen3.6 27B served by the local Ollama daemon.
+#
+# This is the "Qwen3.6 27B" entry from the model list, and it is already pulled,
+# so it needs no download.
+hf_id: Qwen/Qwen3.6-27B
+served_model_name: qwen3.6:27b
+display_name: Qwen3.6 27B (Ollama, INT4)
+backend: openai
+base_url: http://localhost:11434/v1
+
+params_b: 27
+architecture: dense
+license: apache-2.0
+status: verified
+quantization: int4-gguf
+reasoning: true
+notes: >-
+  Quantised GGUF (~17 GB on disk), so label it as INT4 in the report -- not
+  comparable to a bf16 Qwen3.6 27B run.
+
+  Thinking cannot be reliably disabled through Ollama's OpenAI shim the way
+  `chat_template_kwargs: {enable_thinking: false}` does on vLLM, so this model WILL
+  emit hidden chain-of-thought. Two consequences: the token budgets below are much
+  larger than the vLLM configs, and `extract.strip_reasoning` is doing real work on
+  every row. Check `n_truncated` in run_meta.json afterwards -- a model that spends
+  its whole budget thinking returns an empty answer and scores zero for reasons
+  that have nothing to do with code-mixing.
+
+  A `qwen3.6:27b-fast` tag is also pulled locally if you want a speed comparison.
+concurrency: 4
+request_timeout: 1800.0
+task_overrides:
+  sa:         { max_tokens: 1024 }
+  mmlu:       { max_tokens: 1024 }
+  truthfulqa: { max_tokens: 1024 }
+  mt:         { max_tokens: 1024 }
+  gsm8k:      { max_tokens: 4096 }
+  lid:        { max_tokens: 3072 }
+  pos:        { max_tokens: 3072 }
+  ner:        { max_tokens: 3072 }

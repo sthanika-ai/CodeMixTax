@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+.venv-*/
+venv/
+env/
+.python-version
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Secrets / local env
+.env
+.env.local
+
+# ---- Benchmark artefacts -------------------------------------------------
+# This repository ships CODE, not results. Everything a run produces stays local:
+# raw generations, per-row predictions, scores, reports and figures. That keeps
+# the repo small and reviewable, and it keeps one team's numbers from being
+# mistaken for a property of the harness. Reproduce them with the commands in
+# the README; the pipeline is deterministic (greedy decoding, fixed seed) and
+# every run records its own configuration in run_meta.json.
+runs/
+results/
+data/cache/
+data/raw/
+*.log
+logs/
+
+
+# HF / torch caches if someone points them here
+.cache/
+*.safetensors
+*.gguf
+*.bin
+
+# Driver PID files written by scripts/run_*.sh
+.runpid-*
+
+# ---- Operational scaffolding, not part of the reproducible pipeline -------
+# One driver per model, written for this cluster's GPUs, queueing and quirks.
+# They are not what someone else should run: configs/models/*.yaml is the
+# reproducible spec (dtype, budgets, prompt style, per-task overrides), and the
+# README documents the one `cmb-indic run` command that consumes it.
+scripts/run_batch*.sh
+scripts/run_krutrim2.sh
+scripts/run_llama4*.sh
+scripts/run_nemotron*.sh
+scripts/run_openhathi.sh
+scripts/run_param.sh
+scripts/run_remaining_models.sh
+scripts/run_sarvam30b*.sh
+scripts/run_truthfulqa_tax.sh
+scripts/_gate_and_run.sh
+
+# Smoke / timing probes -- situational, tied to specific machines and moments
+scripts/smoke_*.sh
+
+# Superseded report generators, replaced by the build_tax_* pipeline
+scripts/build_metrics_report.py
+scripts/build_report_data.py
+scripts/plot_degradation.py
+scripts/degradation.py
+scripts/report_tax.py
+
+# One-off analyses kept locally
+scripts/analyze_cmi.py
+scripts/compare_models.py
+scripts/summarize_run.py
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Upstream reference implementation writes here
+result/
+
+# Reference material, not part of the project
+MILU_Report_Page.html
+.github/
+.venv-hf

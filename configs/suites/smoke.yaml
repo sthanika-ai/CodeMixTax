@@ -1,0 +1,17 @@
+# Fast plumbing check: 20 rows per split, fake backend, no GPU required.
+#
+#   cmb-indic download && cmb-indic run --suite smoke
+#
+# Should finish in seconds and produce a complete results/REPORT.md. Run this
+# first after cloning, and again after changing anything in extract.py.
+
+models:
+  - echo-debug
+
+run:
+  datasets: [all]
+  limit: 20
+  sample: head
+  shots: 0
+  extraction: robust
+  out_dir: runs

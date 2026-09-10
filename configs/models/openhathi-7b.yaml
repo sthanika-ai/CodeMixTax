@@ -1,0 +1,21 @@
+hf_id: sarvamai/OpenHathi-7B-Hi-v0.1-Base
+display_name: OpenHathi 7B (base)
+params_b: 7
+architecture: dense (Llama 2)
+vision: false
+license: llama2
+gated: false
+status: verified
+notes: >-
+  BASE model, not instruction-tuned: Sarvam's Llama-2 Hindi continuation. Expect the
+  pattern Sarvam-1 and Param-1 both showed -- near-chance 0-shot MMLU, a high
+  unparsed rate on GSM8K, and few-shot being the only setting where the generative
+  numbers mean anything. Reported 0-shot here for comparability, with the caveat
+  attached wherever the number appears.
+prompt_style: completion
+dtype: bfloat16
+max_model_len: 4096
+gpu_memory_utilization: 0.90
+task_overrides:
+  mmlu: { max_tokens: 512 }
+  gsm8k: { max_tokens: 3072 }

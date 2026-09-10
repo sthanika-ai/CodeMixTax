@@ -1,0 +1,14 @@
+hf_id: google/gemma-4-12B-it
+display_name: Gemma 4 12B (it)
+params_b: 12
+architecture: dense
+vision: true
+license: gemma-terms-of-use
+gated: false
+status: verified
+notes: >-
+  Note the capitalised "12B" in the repo id. Listed on the Hub as an any-to-any
+  model; only its text path is exercised here. An official INT4 QAT checkpoint
+  exists at google/gemma-4-12B-it-qat-w4a16-ct if you want a quantised comparison.
+dtype: bfloat16
+max_model_len: 8192

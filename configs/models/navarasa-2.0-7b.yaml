@@ -1,0 +1,23 @@
+hf_id: Telugu-LLM-Labs/Indic-gemma-7b-finetuned-sft-Navarasa-2.0
+display_name: Navarasa 2.0 7B (Gemma)
+params_b: 7
+architecture: dense (Gemma 1)
+vision: false
+license: gemma-terms-of-use
+gated: false
+status: verified
+notes: >-
+  A Gemma fine-tune covering 15 Indian languages. Note the base is Gemma *1* 7B, not
+  Gemma 3, so it is not a clean pair with the four Gemma 3 models already measured --
+  a gap against them confounds the fine-tune with two generations of base model.
+
+  Ships no chat template -- it was trained on an Alpaca-style instruction format --
+  and transformers 4.44+ refuses to substitute a default, so it is rendered as a
+  plain completion.
+prompt_style: completion
+dtype: bfloat16
+max_model_len: 8192
+gpu_memory_utilization: 0.90
+task_overrides:
+  mmlu: { max_tokens: 512 }
+  gsm8k: { max_tokens: 4096 }

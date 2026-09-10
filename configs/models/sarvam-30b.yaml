@@ -1,0 +1,34 @@
+hf_id: sarvamai/sarvam-30b
+display_name: Sarvam-30B
+params_b: 30
+architecture: MoE, 128 experts top-6 + 1 shared (2.4B non-embedding active)
+vision: false
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  Reasoning model: every reply opens a <think> trace, so it is scored like
+  Sarvam-M -- reasoning: true, and a trace truncated by the budget scores UNK
+  rather than donating a letter lifted from the reasoning. Budgets and dtype are
+  deliberately identical to sarvam-m-24b so the two Indic models stay comparable.
+
+  MUST be prompted through its chat template (prompt_style: chat, the default).
+  Fed raw completion-style text it degenerates into token repetition -- that is a
+  prompting failure, not a broken checkpoint; verified 2026-08-26 on both vLLM and
+  the HF backend.
+
+  The checkpoint is stored fp32 (128 GB on disk); dtype bfloat16 is required to fit
+  on one 80 GB A100. Sibling repos are traps: sarvam-30b-fp8 needs compute
+  capability >=8.9 (A100 is 8.0) and sarvam-30b-gguf cannot be loaded because
+  vLLM 0.27.1 dropped GGUF support.
+
+  Runs on vLLM 0.27.1 (.venv-new), not the 0.10.1 used for the first 14 models --
+  needs VLLM_USE_FLASHINFER_SAMPLER=0 because the only nvcc on PATH is CUDA 11.5.
+trust_remote_code: true
+dtype: bfloat16
+max_model_len: 16384
+reasoning: true
+gpu_memory_utilization: 0.92
+task_overrides:
+  mmlu: { max_tokens: 2048 }
+  gsm8k: { max_tokens: 4096 }

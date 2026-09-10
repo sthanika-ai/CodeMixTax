@@ -1,0 +1,47 @@
+# Copy this file to configs/models/<your-model>.yaml to add a model.
+# The filename (minus .yaml) becomes the config name used in --models and in
+# output paths, so keep it short and filesystem-safe.
+#
+# Only `hf_id` is strictly required; everything else falls back to
+# configs/default.yaml.
+
+hf_id: org/model-name             # canonical Hugging Face repo id
+display_name: My Model 7B         # shown in reports
+backend: openai                   # openai | vllm | hf | echo
+
+# --- documentation, surfaced by `cmb-indic models` and in the report ---------
+params_b: 7                       # billions of parameters (total, not active)
+architecture: dense               # dense | moe | "moe (Nb active)"
+vision: false
+license: apache-2.0
+gated: false                      # true if the Hub repo needs access approval
+status: unverified                # verified | substituted | unverified
+notes: ""
+
+# --- serving -----------------------------------------------------------------
+# openai backend: the name your server advertises. vLLM defaults to the hf_id;
+# Ollama uses its own short tags (e.g. "gemma3:12b"), so set it explicitly there.
+# served_model_name: org/model-name
+# base_url: http://localhost:8000/v1     # else $CMB_BASE_URL
+# concurrency: 16
+
+# vllm / hf backends only:
+# dtype: bfloat16
+# quantization: awq                      # awq | gptq | compressed-tensors | bitsandbytes | fp8
+# tensor_parallel_size: 1
+# gpu_memory_utilization: 0.90
+# max_model_len: 8192
+# trust_remote_code: false
+# load_in_4bit: false                    # hf backend, bitsandbytes NF4
+
+# --- prompting / decoding ----------------------------------------------------
+# prompt_style: chat                     # `completion` for base models with no chat template
+# max_tokens: 512
+# temperature: 0.0
+# stop: ["</s>"]
+# reasoning: false                       # true for models that emit hidden CoT
+# chat_template_kwargs: { enable_thinking: false }
+
+# --- per-task sampling overrides (merged over configs/default.yaml) ----------
+# task_overrides:
+#   gsm8k: { max_tokens: 2048 }

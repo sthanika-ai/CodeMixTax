@@ -1,0 +1,34 @@
+# pre-commit install
+#
+# The vendored upstream reference implementation is excluded everywhere: it is
+# kept byte-identical for provenance, so reformatting it would defeat the purpose.
+exclude: '^(utils\.py|test_model\.py|oaib/|semantic_metrics\.ipynb|docs/upstream_README\.md)'
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: check-added-large-files
+        args: ["--maxkb=512"]   # keeps dataset CSVs and weights out of git
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: pytest-offline
+        name: pytest (offline tests)
+        entry: python -m pytest tests -q -m "not network"
+        language: system
+        pass_filenames: false
+        stages: [pre-push]

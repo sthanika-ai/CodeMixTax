@@ -1,0 +1,21 @@
+hf_id: cyankiwi/Qwen3.6-27B-AWQ-INT4
+display_name: Qwen3.6 27B (AWQ INT4)
+params_b: 27
+architecture: dense
+vision: false
+license: apache-2.0
+gated: false
+status: verified
+notes: >-
+  Community AWQ INT4 quantisation -- not published by Qwen. Verify the checksum and
+  state the exact repo in your report, since community quants vary in calibration
+  data and quality. Official alternatives to compare against: Qwen3.6-27B-FP8
+  (Qwen) and Qwen3.6-27B-NVFP4 (nvidia), both of which are less lossy than INT4.
+quantization: awq
+dtype: auto
+max_model_len: 16384
+reasoning: true
+chat_template_kwargs:
+  enable_thinking: false
+task_overrides:
+  gsm8k: { max_tokens: 2048 }

@@ -1,0 +1,13 @@
+hf_id: google/gemma-3-12b-it
+display_name: Gemma 3 12B (it)
+params_b: 12
+architecture: dense
+vision: true
+license: gemma-terms-of-use
+gated: true
+status: verified
+notes: >-
+  bf16 reference for the INT4 comparison against gemma3-12b-it-int4. Run both with
+  the same run_id and seed so the quantisation delta is the only difference.
+dtype: bfloat16
+max_model_len: 8192
